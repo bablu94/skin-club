@@ -92,33 +92,7 @@ router.post('/available-slots', async (req, res, next) => {
 });
 
 router.post('/booking', async (req, res, next) => {
-  try {
-    const {staffId, serviceId, fromTime, customerDetails, accessToken, paymentInfo, userInfo} = req.body;
-    const bodyFormData = new FormData();
-    bodyFormData.append('staff_id', staffId);
-    bodyFormData.append('from_time', fromTime);
-    bodyFormData.append('service_id', serviceId);
-    bodyFormData.append('customer_details', JSON.stringify(customerDetails));
-    const {data: {response: {returnvalue}}} = await axios.post('https://www.zohoapis.com/bookings/v1/json/appointment', bodyFormData, {
-      headers: {
-        Authorization: accessToken
-      }
-    });
-    const appointmentData = {
-      ...returnvalue,
-      ...paymentInfo,
-      customer_info: userInfo
-    }
-    const AppointmentResponse = new Appointment(appointmentData);
-    await AppointmentResponse.save();
-    res.json({returnvalue});
-  } catch (e) {
-    console.log(e);
-    res.json({
-      message: 'Something went wrong',
-      errorLogs: JSON.toString(e)
-    })
-  }
+
 });
 
 router.post('/doctors', async (req, res, next) => {

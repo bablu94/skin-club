@@ -17,6 +17,7 @@
     "mongoose": "^7.4.2",
     "morgan": "~1.9.1",
     "node-json-db": "^2.2.0",
+    "node-schedule": "^2.1.1",
     "square": "^29.0.0",
     "twilio": "^4.15.0"
   },

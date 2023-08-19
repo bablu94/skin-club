@@ -25,8 +25,6 @@ const appointmentSchema = new mongoose.Schema({
     summary_url: { type: String},
     customer_booking_time_zone: { type: String},
     status: { type: String},
-    payment_confirmed: { type: String},
-    payment_id: { type: String},
     customer_info: {
         user_phone: { type: String},
         user_email: { type: String},

@@ -12,3 +12,6 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 db.once('open', () => {
     console.log('Connected to MongoDB');
 });
+
+// Anti wrinkle injections - 3 areas Flat fee
+// Bio remodelling - $595 per syringe Flat fee
