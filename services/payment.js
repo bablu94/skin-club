@@ -5,7 +5,7 @@ const {getBookedAppointment} = require("./booking");
 
 const { paymentsApi } = new Client({
     accessToken: process.env.SQUAREUP_ACCESS,
-    environment: Environment.Sandbox,
+    environment: Environment.Production,
     timeout: 30000
 });
 

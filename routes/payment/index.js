@@ -11,7 +11,7 @@ BigInt.prototype.toJSON = function() {return this.toString()}
 
 const { cardsApi, customersApi, paymentsApi } = new Client({
     accessToken: process.env.SQUAREUP_ACCESS,
-    environment: Environment.Sandbox,
+    environment: Environment.Production,
     timeout: 30000
 });
 
@@ -43,13 +43,13 @@ router.post('/make-purchase', async (req, res, next) => {
         const bookingId = await bookAppointment(req.body);
 
 
-        const now = new Date();
-        // const futureDate = new Date(now.getTime() + (23 * 60 + 59) * 60 * 1000);
-        const futureDate = new Date(now.getTime() + 60 * 1000);
-        const job = schedule.scheduleJob(futureDate, () => createPaymentRequest(customerId, card.id, bookingId, req.body.accessToken));
+        // const now = new Date();
+        // // const futureDate = new Date(now.getTime() + (23 * 60 + 59) * 60 * 1000);
+        // const futureDate = new Date(now.getTime() + 60 * 1000);
+        // const job = schedule.scheduleJob(futureDate, () => createPaymentRequest(customerId, card.id, bookingId, req.body.accessToken));
 
         res.json({
-            data: req.body.sourceId
+            data: bookingId
         });
     } catch (e) {
         console.log(e);

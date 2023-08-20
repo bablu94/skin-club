@@ -11,15 +11,14 @@ const generateOTP = () => {
 // Send OTP via SMS
 router.post('/send-otp', async (req, res) => {
     const { phoneNumber, email } = req.body;
+    const otp = generateOTP();
+    const user = await User.findOneAndUpdate(
+        { phoneNumber },
+        { otp, email },
+        { new: true, upsert: true, setDefaultsOnInsert: true }
+    );
 
     try {
-        const otp = generateOTP();
-        const user = await User.findOneAndUpdate(
-            { phoneNumber },
-            { otp, email },
-            { new: true, upsert: true, setDefaultsOnInsert: true }
-        );
-
         const sent = await client.messages.create({
             body: `Your OTP is: ${otp}`,
             from: process.env.TWILIO_PHONE,
